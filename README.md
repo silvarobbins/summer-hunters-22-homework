@@ -42,7 +42,9 @@ Try to keep the following things in mind
 
 To install or activate required dependencies, run following commands
 
-### (N)ode (V)ersion (M)anager
+You will need to install [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) and [yarn](https://classic.yarnpkg.com/lang/en/docs/install)
+
+### (N)ode (V)ersion (M)anager 
 
 `nvm use`
 
