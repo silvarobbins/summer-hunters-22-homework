@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { gql, useQuery } from 'urql';
 import styled from 'styled-components';
 
-import { BabyPorcu, Frame } from '../../assets';
+import { Porcu, BabyPorcu, Frame, Burger, Cutlery, Heart } from '../../assets';
 import { Character } from '../../components/Character';
 import { Screen } from '../../components/Screen';
+import { Menu } from '../../components/Menu';
+import { Stats } from '../stats';
 
 const query = gql`
   query GetCharacters {
@@ -27,6 +29,11 @@ const StyledHome = styled.div`
 export const Home: React.FC = () => {
   // TODO: proper types, maybe shared with backend
   const [result] = useQuery<{ characters: { name: string }[] }>({ query });
+  const [statsVisible, setStatsVisible] = useState(false);
+  
+  const toggleStatsVisibility = () => {
+    setStatsVisible(!statsVisible)
+  }
 
   if (result.fetching) {
     return <>TODO: handle loading</>;
@@ -46,6 +53,12 @@ export const Home: React.FC = () => {
             characterImage={<BabyPorcu />}
           />
         ))}
+        <Stats visible={statsVisible}></Stats>
+        <Menu
+          toggleStatsVisibility= { toggleStatsVisibility }
+          statImage={<Heart />}
+          eatImage={<Cutlery />}
+        />
       </Screen>
       <Frame />
     </StyledHome>

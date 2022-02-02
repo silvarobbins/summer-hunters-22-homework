@@ -6,6 +6,11 @@ const StyledCharacter = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  animation-name: characterBounce;
+  animation-duration: 2s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
 
   > :first-child {
     margin-bottom: 0.5rem;
@@ -13,7 +18,6 @@ const StyledCharacter = styled.div`
 `;
 
 const Name = styled.div`
-  padding: 0rem 3rem;
 `;
 
 export interface ICharacterProps {
@@ -28,7 +32,7 @@ export const Character: FC<ICharacterProps> = ({
 }) => {
   return (
     <StyledCharacter {...restProps}>
-      <Name>Name: {name}</Name>
+      <Name>{name}</Name>
       {characterImage}
     </StyledCharacter>
   );

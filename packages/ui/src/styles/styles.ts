@@ -42,4 +42,28 @@ export const GlobalStyles = createGlobalStyle`
   a {
     text-decoration: none;
   }
+
+  button {
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+
+  @keyframes characterMove {
+    0% {
+      transform: translateX(70px);
+    }
+    100% {
+      transform: translateX(-70px);
+    }
+  }
+
+  @keyframes characterBounce {
+    0% {
+      transform: translateY(0px);
+    }
+    100% {
+      transform: translateY(-40px)
+    }
+  }
 `;

@@ -3,7 +3,9 @@ import styled from 'styled-components';
 
 const StyledScreen = styled.div`
   position: absolute;
-  top: 0;
+  height: 210px;
+  width: 202px;
+  top: 65px;
   left: 0;
   bottom: 0;
   right: 0;
@@ -12,6 +14,7 @@ const StyledScreen = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column
 `;
 
 export interface IScreenProps {}

@@ -4,6 +4,8 @@ import { Context } from '../types/global';
 export const graphQLSchema = buildSchema(`
   type Character {
     name: String!
+    energy: Int
+    hunger: Int
   }
 
   type Query {
