@@ -8,7 +8,6 @@ const StyledApp = styled.main``;
 
 
 const App = () => {
-  const [stats, setStats] = useState([])
   
   return (
     <>
