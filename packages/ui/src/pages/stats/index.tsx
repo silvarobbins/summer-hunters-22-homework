@@ -1,6 +1,6 @@
 import React ,{useState} from 'react';
 import styled from 'styled-components';
-import { stats } from '../home';
+import { stats } from '../home'
 
 const StyledStats = styled.div`
   position: absolute;
@@ -26,6 +26,7 @@ export const Stats: React.FC<IStatsProps> = ({ visible, stats }) => {
         Energy: {stats.energy} <br/>
         Happiness:  {stats.happiness}<br/>
         Health: {stats.health} <br/>
+        Hunger: {stats.hunger}
       </StyledStats>
     )    
   } else

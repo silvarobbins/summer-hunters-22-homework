@@ -17,6 +17,7 @@ const StyledCharacter = styled.div`
   }
 `;
 
+
 const Name = styled.div`
 `;
 

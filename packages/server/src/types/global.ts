@@ -9,6 +9,7 @@ export type AppConfig = {
 
 export type Character = {
   name: string;
+  age: number;
 };
 
 export type Handler<Args extends unknown, ReturnValue extends unknown> = (

@@ -7,7 +7,6 @@ export const graphQLSchema = buildSchema(`
     energy: Int
     hunger: Int
   }
-
   type Query {
     characters: [Character]
   }

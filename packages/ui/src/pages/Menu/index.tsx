@@ -11,7 +11,9 @@ const StyledMenu = styled.div`
 `;
 
 export interface IMenuProps {
-  toggleStatsVisibility: ()=>void;
+  toggleStatsVisibility: () => void;
+  handleEat: () => void;
+  handlePlay: () => void;
   statImage: React.ReactNode;
   eatImage: React.ReactNode;
   playImage: React.ReactNode;
@@ -20,6 +22,8 @@ export interface IMenuProps {
 
 export const Menu: React.FC<IMenuProps> = ({
   toggleStatsVisibility,
+  handleEat,
+  handlePlay,
   statImage,
   eatImage,
   playImage,
@@ -28,8 +32,8 @@ export const Menu: React.FC<IMenuProps> = ({
   return (
     <StyledMenu>
       <button id='statsButton' onClick={toggleStatsVisibility}>{statImage}</button>
-      <button id='eatButton' >{eatImage}</button>
-      <button id='playButton' >{playImage}</button>
+      <button id='eatButton' onClick={handleEat}>{eatImage}</button>
+      <button id='playButton' onClick={handlePlay}>{playImage}</button>
       <button id='playButton' >{sleepImage}</button>
     </StyledMenu>
   );

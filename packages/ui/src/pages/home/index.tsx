@@ -30,30 +30,49 @@ export interface stats {
   energy: number;
   happiness: number;
   health: number;
+  hunger: number;
 }
 
 export const Home: React.FC = () => {
   // TODO: proper types, maybe shared with backend
   const [result] = useQuery<{ characters: { name: string }[] }>({ query });
+
   const [stats, setStats] = useState<stats>({
     energy: 10,
     happiness: 10,
-    health: 9
+    health: 9,
+    hunger: 3
   })
+
+  const handleEat = () => {
+    const newStats = {
+      energy: stats.energy + 1,
+      happiness: stats.happiness + 1,
+      health: stats.health + 1,
+      hunger: stats.hunger + 5
+    }
+    setStats(newStats)
+  }
+  const handlePlay = () => {
+    const newStats = {
+      energy: stats.energy - 2,
+      happiness: stats.happiness + 5,
+      health: stats.health + 1,
+      hunger: stats.hunger - 2
+    }
+    setStats(newStats)
+  }
+
   const [statsVisible, setStatsVisible] = useState(false);
-  
   const toggleStatsVisibility = () => {
     setStatsVisible(!statsVisible)
   }
-
   if (result.fetching) {
     return <>TODO: handle loading</>;
   }
-
   if (!result.data) {
     return <>TODO: handle no data</>;
   }
-
   return (
     <StyledHome>
       <Screen>
@@ -67,6 +86,8 @@ export const Home: React.FC = () => {
         <Stats visible={statsVisible} stats={stats}></Stats>
         <Menu
           toggleStatsVisibility= { toggleStatsVisibility }
+          handleEat = {handleEat}
+          handlePlay = {handlePlay}
           statImage={<Heart />}
           eatImage={<Cutlery />}
           playImage={<Ball />}
