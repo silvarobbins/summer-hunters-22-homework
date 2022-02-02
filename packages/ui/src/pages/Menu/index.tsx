@@ -14,6 +14,7 @@ export interface IMenuProps {
   toggleStatsVisibility: () => void;
   handleEat: () => void;
   handlePlay: () => void;
+  handleSleep: () => void;
   statImage: React.ReactNode;
   eatImage: React.ReactNode;
   playImage: React.ReactNode;
@@ -24,6 +25,7 @@ export const Menu: React.FC<IMenuProps> = ({
   toggleStatsVisibility,
   handleEat,
   handlePlay,
+  handleSleep,
   statImage,
   eatImage,
   playImage,
@@ -34,7 +36,7 @@ export const Menu: React.FC<IMenuProps> = ({
       <button id='statsButton' onClick={toggleStatsVisibility}>{statImage}</button>
       <button id='eatButton' onClick={handleEat}>{eatImage}</button>
       <button id='playButton' onClick={handlePlay}>{playImage}</button>
-      <button id='playButton' >{sleepImage}</button>
+      <button id='playButton' onClick={handlePlay}>{sleepImage}</button>
     </StyledMenu>
   );
 };

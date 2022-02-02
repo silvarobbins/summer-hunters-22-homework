@@ -46,19 +46,29 @@ export const Home: React.FC = () => {
 
   const handleEat = () => {
     const newStats = {
-      energy: stats.energy + 1,
+      energy: stats.energy + 3,
       happiness: stats.happiness + 1,
-      health: stats.health + 1,
+      health: stats.health - 1,
       hunger: stats.hunger + 5
     }
     setStats(newStats)
   }
   const handlePlay = () => {
     const newStats = {
-      energy: stats.energy - 2,
+      energy: stats.energy - 3,
       happiness: stats.happiness + 5,
       health: stats.health + 1,
-      hunger: stats.hunger - 2
+      hunger: stats.hunger - 3
+    }
+    setStats(newStats)
+  }
+
+  const handleSleep = () => {
+    const newStats = {
+      energy: stats.energy + 5,
+      happiness: stats.happiness + 3,
+      health: stats.health + 1,
+      hunger: stats.hunger - 3
     }
     setStats(newStats)
   }
@@ -88,6 +98,7 @@ export const Home: React.FC = () => {
           toggleStatsVisibility= { toggleStatsVisibility }
           handleEat = {handleEat}
           handlePlay = {handlePlay}
+          handleSleep = {handleSleep}
           statImage={<Heart />}
           eatImage={<Cutlery />}
           playImage={<Ball />}
