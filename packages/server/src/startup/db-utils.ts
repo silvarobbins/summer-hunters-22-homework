@@ -6,8 +6,10 @@ export const createTables = (db: Database) => {
       id INTEGER PRIMARY KEY,
       name TEXT,
       description TEXT,
-      age INTEGER,
+      age INTEGER DEFAULT 0,
+      energy INTEGER DEFAULT 10,
       happiness INTEGER DEFAULT 10,
+      health INTEGER DEFAULT 10,
       hunger INTEGER DEFAULT 0
     )
   `;

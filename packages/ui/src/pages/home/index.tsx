@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { gql, useQuery } from 'urql';
 import styled from 'styled-components';
 
@@ -12,9 +12,16 @@ const query = gql`
   query GetCharacters {
     characters {
       name
+      age
+      description
+      energy
+      happiness
+      health
+      hunger
     }
   }
 `;
+
 
 const StyledHome = styled.div`
   position: fixed;
@@ -35,14 +42,36 @@ export interface stats {
 
 export const Home: React.FC = () => {
   // TODO: proper types, maybe shared with backend
-  const [result] = useQuery<{ characters: { name: string }[] }>({ query });
+  const [result] = useQuery<{ characters: { 
+    name: string,
+    age: number,
+    description: string,
+    energy: number,
+    happiness: number,
+    health: number
+    hunger: number
+  }[] }>({ query });
+
+  const character = result.data?.characters[0]
 
   const [stats, setStats] = useState<stats>({
-    energy: 10,
-    happiness: 10,
-    health: 9,
-    hunger: 3
+    energy: 0,
+    happiness: 0,
+    health: 0,
+    hunger: 0,
   })
+
+  useEffect(() => {
+    if (character !== undefined) {
+      setStats(currentStats => ({
+        energy: character.energy,
+        happiness: character.happiness,
+        health: character.health,
+        hunger: character.hunger,
+      }))
+    }
+  }, [character]);
+
 
   const handleStatsDegration = () => {
     setStats(currentStats => ({
@@ -94,6 +123,7 @@ export const Home: React.FC = () => {
     <StyledHome>
       <Screen>
         {result.data.characters.map((character, i) => (
+          console.log(character),
           <Character
             handleStatsDegration={handleStatsDegration}
             key={i}

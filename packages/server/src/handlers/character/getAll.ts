@@ -6,6 +6,7 @@ export const getAll: Handler<unknown, Character[] | Error> = (ctx, _input) =>
       if (err) {
         reject(err);
       }
+      console.log(result);
       resolve(result);
     });
   });
