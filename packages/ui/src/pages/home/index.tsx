@@ -44,6 +44,14 @@ export const Home: React.FC = () => {
     hunger: 3
   })
 
+  const handleStatsDegration = () => {
+    setStats(currentStats => ({
+      energy: currentStats.energy -2 ,
+      happiness: currentStats.happiness - 1,
+      health: currentStats.health - 1,
+      hunger: currentStats.hunger - 2
+    }))
+  }
   const handleEat = () => {
     const newStats = {
       energy: stats.energy + 3,
@@ -62,7 +70,6 @@ export const Home: React.FC = () => {
     }
     setStats(newStats)
   }
-
   const handleSleep = () => {
     const newStats = {
       energy: stats.energy + 5,
@@ -88,6 +95,7 @@ export const Home: React.FC = () => {
       <Screen>
         {result.data.characters.map((character, i) => (
           <Character
+            handleStatsDegration={handleStatsDegration}
             key={i}
             name={character.name}
             characterImage={<BabyPorcu />}

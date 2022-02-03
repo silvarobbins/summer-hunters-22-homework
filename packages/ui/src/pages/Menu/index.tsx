@@ -36,7 +36,7 @@ export const Menu: React.FC<IMenuProps> = ({
       <button id='statsButton' onClick={toggleStatsVisibility}>{statImage}</button>
       <button id='eatButton' onClick={handleEat}>{eatImage}</button>
       <button id='playButton' onClick={handlePlay}>{playImage}</button>
-      <button id='playButton' onClick={handlePlay}>{sleepImage}</button>
+      <button id='playButton' onClick={handleSleep}>{sleepImage}</button>
     </StyledMenu>
   );
 };
