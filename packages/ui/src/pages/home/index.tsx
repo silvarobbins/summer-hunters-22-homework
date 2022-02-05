@@ -1,16 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import { gql, useQuery } from 'urql';
+import { gql, useMutation, useQuery } from 'urql';
 import styled from 'styled-components';
 
 import { Porcu, BabyPorcu, Frame, Burger, Cutlery, Heart, Ball, Sleep } from '../../assets';
 import { Character } from '../../components/Character';
 import { Screen } from '../../components/Screen';
-import { Menu } from '../Menu';
+import { Menu } from '../menu';
 import { Stats } from '../stats';
 
-const query = gql`
+const GET_ALL = gql`
   query GetCharacters {
     characters {
+      id
+      name
+      age
+      description
+      energy
+      happiness
+      health
+      hunger
+    }
+  }
+`;
+
+const UPDATE_STATS = gql`
+  mutation UpdateStats ($id: Int!, $energy: Int!, $happiness: Int!, $health: Int!, $hunger: Int!) {
+    updateStats(id: $id, energy: $energy, happiness: $happiness, health: $health, hunger: $hunger) {
       name
       age
       description
@@ -43,6 +58,7 @@ export interface stats {
 export const Home: React.FC = () => {
   // TODO: proper types, maybe shared with backend
   const [result] = useQuery<{ characters: { 
+    id: number,
     name: string,
     age: number,
     description: string,
@@ -50,19 +66,19 @@ export const Home: React.FC = () => {
     happiness: number,
     health: number
     hunger: number
-  }[] }>({ query });
+  }[] }>({ query: GET_ALL });
 
-  const character = result.data?.characters[0]
+  const character = result.data?.characters[0];
 
   const [stats, setStats] = useState<stats>({
-    energy: 0,
-    happiness: 0,
-    health: 0,
+    energy: 10,
+    happiness: 10,
+    health: 1,
     hunger: 0,
-  })
+  });
 
   useEffect(() => {
-    if (character !== undefined) {
+    if (character) {
       setStats(currentStats => ({
         energy: character.energy,
         happiness: character.happiness,
@@ -72,41 +88,75 @@ export const Home: React.FC = () => {
     }
   }, [character]);
 
+  const [_, updateStats] = useMutation(UPDATE_STATS);
 
   const handleStatsDegration = () => {
     setStats(currentStats => ({
       energy: currentStats.energy -2 ,
       happiness: currentStats.happiness - 1,
       health: currentStats.health - 1,
-      hunger: currentStats.hunger - 2
+      hunger: currentStats.hunger + 2
     }))
   }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleStatsDegration();
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+
   const handleEat = () => {
     const newStats = {
       energy: stats.energy + 3,
       happiness: stats.happiness + 1,
       health: stats.health - 1,
-      hunger: stats.hunger + 5
+      hunger: stats.hunger - 5
     }
-    setStats(newStats)
+    if (character) {
+      updateStats({
+        id: character.id, 
+        energy: newStats.energy, 
+        happiness: newStats.happiness, 
+        health: newStats.health, 
+        hunger: newStats.hunger})
+      setStats(newStats)
+    }
   }
   const handlePlay = () => {
     const newStats = {
       energy: stats.energy - 3,
       happiness: stats.happiness + 5,
       health: stats.health + 1,
-      hunger: stats.hunger - 3
+      hunger: stats.hunger + 3
     }
-    setStats(newStats)
+    if (character) {
+      updateStats({
+        id: character.id, 
+        energy: newStats.energy, 
+        happiness: newStats.happiness, 
+        health: newStats.health, 
+        hunger: newStats.hunger})
+      setStats(newStats)
+    }
   }
   const handleSleep = () => {
     const newStats = {
       energy: stats.energy + 5,
       happiness: stats.happiness + 3,
       health: stats.health + 1,
-      hunger: stats.hunger - 3
+      hunger: stats.hunger + 3
     }
-    setStats(newStats)
+    if (character) {
+      updateStats({
+        id: character.id, 
+        energy: newStats.energy, 
+        happiness: newStats.happiness, 
+        health: newStats.health, 
+        hunger: newStats.hunger})
+      setStats(newStats)
+    }
   }
 
   const [statsVisible, setStatsVisible] = useState(false);
@@ -125,7 +175,6 @@ export const Home: React.FC = () => {
         {result.data.characters.map((character, i) => (
           console.log(character),
           <Character
-            handleStatsDegration={handleStatsDegration}
             key={i}
             name={character.name}
             characterImage={<BabyPorcu />}

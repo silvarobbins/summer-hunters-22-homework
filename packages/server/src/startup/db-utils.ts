@@ -39,6 +39,7 @@ export const seedDatabase = (db: Database) => {
         if (err) {
           reject(err);
         }
+        console.log('inserted characters', result);
         resolve(result);
       },
     ),

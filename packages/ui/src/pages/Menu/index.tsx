@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Stats } from '../stats';
 
 const StyledMenu = styled.div`
   position: absolute;

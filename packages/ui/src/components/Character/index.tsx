@@ -25,24 +25,13 @@ let counter = 0;
 export interface ICharacterProps {
   name: string;
   characterImage: React.ReactNode;
-  handleStatsDegration: () => void;
 };
 
 export const Character: FC<ICharacterProps> = ({
   name,
   characterImage,
-  handleStatsDegration,
   ...restProps
 }) => {
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      console.log("Calling degration: ", counter);
-      counter ++;
-      handleStatsDegration();
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <StyledCharacter {...restProps}>
