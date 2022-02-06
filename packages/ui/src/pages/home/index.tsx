@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { gql, useMutation, useQuery } from 'urql';
 import styled from 'styled-components';
 
-import { Porcu, BabyPorcu, Frame, Burger, Cutlery, Heart, Ball, Sleep } from '../../assets';
+import { Porcu, BabyPorcu, Frame, Burger } from '../../assets';
 import { Character } from '../../components/Character';
 import { Screen } from '../../components/Screen';
 import { Menu } from '../menu';
@@ -48,6 +48,7 @@ const StyledHome = styled.div`
   background-color: #e5fbff;
 `;
 
+
 export interface stats {
   energy: number;
   happiness: number;
@@ -73,7 +74,7 @@ export const Home: React.FC = () => {
   const [stats, setStats] = useState<stats>({
     energy: 10,
     happiness: 10,
-    health: 1,
+    health: 10,
     hunger: 0,
   });
 
@@ -106,6 +107,16 @@ export const Home: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const handleSaveStats = () => {
+    if (character) {
+    updateStats({
+      id: character.id, 
+      energy: stats.energy, 
+      happiness: stats.happiness, 
+      health: stats.health, 
+      hunger: stats.hunger})
+    }
+  }
 
   const handleEat = () => {
     const newStats = {
@@ -114,16 +125,9 @@ export const Home: React.FC = () => {
       health: stats.health - 1,
       hunger: stats.hunger - 5
     }
-    if (character) {
-      updateStats({
-        id: character.id, 
-        energy: newStats.energy, 
-        happiness: newStats.happiness, 
-        health: newStats.health, 
-        hunger: newStats.hunger})
-      setStats(newStats)
-    }
+    setStats(newStats)
   }
+
   const handlePlay = () => {
     const newStats = {
       energy: stats.energy - 3,
@@ -131,16 +135,9 @@ export const Home: React.FC = () => {
       health: stats.health + 1,
       hunger: stats.hunger + 3
     }
-    if (character) {
-      updateStats({
-        id: character.id, 
-        energy: newStats.energy, 
-        happiness: newStats.happiness, 
-        health: newStats.health, 
-        hunger: newStats.hunger})
-      setStats(newStats)
-    }
+    setStats(newStats)
   }
+
   const handleSleep = () => {
     const newStats = {
       energy: stats.energy + 5,
@@ -148,15 +145,7 @@ export const Home: React.FC = () => {
       health: stats.health + 1,
       hunger: stats.hunger + 3
     }
-    if (character) {
-      updateStats({
-        id: character.id, 
-        energy: newStats.energy, 
-        happiness: newStats.happiness, 
-        health: newStats.health, 
-        hunger: newStats.hunger})
-      setStats(newStats)
-    }
+    setStats(newStats)
   }
 
   const [statsVisible, setStatsVisible] = useState(false);
@@ -182,14 +171,11 @@ export const Home: React.FC = () => {
         ))}
         <Stats visible={statsVisible} stats={stats}></Stats>
         <Menu
+          handleSaveStats = { handleSaveStats }
           toggleStatsVisibility= { toggleStatsVisibility }
           handleEat = {handleEat}
           handlePlay = {handlePlay}
           handleSleep = {handleSleep}
-          statImage={<Heart />}
-          eatImage={<Cutlery />}
-          playImage={<Ball />}
-          sleepImage={<Sleep />}
         />
       </Screen>
       <Frame />

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Burger, Cutlery, Heart, Ball, Sleep, LeftArrow } from '../../assets';
 
 const StyledMenu = styled.div`
   position: absolute;
@@ -10,32 +11,27 @@ const StyledMenu = styled.div`
 `;
 
 export interface IMenuProps {
+  handleSaveStats: () => void;
   toggleStatsVisibility: () => void;
   handleEat: () => void;
   handlePlay: () => void;
   handleSleep: () => void;
-  statImage: React.ReactNode;
-  eatImage: React.ReactNode;
-  playImage: React.ReactNode;
-  sleepImage: React.ReactNode;
 }
 
 export const Menu: React.FC<IMenuProps> = ({
+  handleSaveStats,
   toggleStatsVisibility,
   handleEat,
   handlePlay,
   handleSleep,
-  statImage,
-  eatImage,
-  playImage,
-  sleepImage,
 }) => {
   return (
     <StyledMenu>
-      <button id='statsButton' onClick={toggleStatsVisibility}>{statImage}</button>
-      <button id='eatButton' onClick={handleEat}>{eatImage}</button>
-      <button id='playButton' onClick={handlePlay}>{playImage}</button>
-      <button id='playButton' onClick={handleSleep}>{sleepImage}</button>
+      <button id='backButton' onClick={handleSaveStats}><LeftArrow /></button>
+      <button id='statsButton' onClick={toggleStatsVisibility}><Heart /></button>
+      <button id='eatButton' onClick={handleEat}><Cutlery /></button>
+      <button id='playButton' onClick={handlePlay}><Ball /></button>
+      <button id='playButton' onClick={handleSleep}><Sleep /></button>
     </StyledMenu>
   );
 };
