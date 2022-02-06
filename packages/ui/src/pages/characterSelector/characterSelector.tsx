@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { gql, useQuery } from 'urql';
+
 import { Screen } from '../../components/Screen';
 import { Frame } from '../../assets';
 
-const StyledCharacterSelect = styled.div`
+const GET_ALL = gql`
+  query GetCharacters {
+    characters {
+      id
+      name
+      age
+      description
+      energy
+      happiness
+      health
+      hunger
+    }
+  }
+`;
+
+const StyledCharacterSelector = styled.div`
   position: absolute;
   display: flex;
   bottom: 0;
@@ -11,28 +28,43 @@ const StyledCharacterSelect = styled.div`
   justify-content: space-evenly;
 `;
 
-export const CharacterSelect: React.FC = () => {
+
+export interface IMenuProps {
+  handleSetCharacter:  (newCharacter: any) => void;
+};
+
+export const CharacterSelector: React.FC<IMenuProps> = ({
+  handleSetCharacter
+}) => {
+  const [result] = useQuery<{ characters: { 
+    id: number,
+    name: string,
+    age: number,
+    description: string,
+    energy: number,
+    happiness: number,
+    health: number
+    hunger: number
+  }[] }>({ query: GET_ALL });
+
+  const character = result.data?.characters[0];
+
+  useEffect(() => {
+    handleSetCharacter(character)
+  }, [character])
+
+  if (result.fetching) {
+    return (
+    <Screen>Loading game...</Screen>)
+    ;
+  }
+  if (!result.data) {
+    return <>TODO: handle no data</>;
+  }
   return (
-    <StyledCharacterSelect>
+    <StyledCharacterSelector>
       <Screen>
-        {result.data.characters.map((character, i) => (
-          console.log(character),
-          <Character
-            key={i}
-            name={character.name}
-            characterImage={<BabyPorcu />}
-          />
-        ))}
-        <Stats visible={statsVisible} stats={stats}></Stats>
-        <Menu
-          handleSaveStats = { handleSaveStats }
-          toggleStatsVisibility= { toggleStatsVisibility }
-          handleEat = {handleEat}
-          handlePlay = {handlePlay}
-          handleSleep = {handleSleep}
-        />
       </Screen>
-      <Frame />
-    </StyledHome>
+    </StyledCharacterSelector>
   );
 };

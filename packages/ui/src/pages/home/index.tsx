@@ -1,42 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { gql, useMutation, useQuery } from 'urql';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { Porcu, BabyPorcu, Frame, Burger } from '../../assets';
-import { Character } from '../../components/Character';
-import { Screen } from '../../components/Screen';
-import { Menu } from '../menu';
-import { Stats } from '../stats';
+import { Frame } from '../../assets';
 import { Game } from '../game/game';
-
-const GET_ALL = gql`
-  query GetCharacters {
-    characters {
-      id
-      name
-      age
-      description
-      energy
-      happiness
-      health
-      hunger
-    }
-  }
-`;
-
-const UPDATE_STATS = gql`
-  mutation UpdateStats ($id: Int!, $energy: Int!, $happiness: Int!, $health: Int!, $hunger: Int!) {
-    updateStats(id: $id, energy: $energy, happiness: $happiness, health: $health, hunger: $hunger) {
-      name
-      age
-      description
-      energy
-      happiness
-      health
-      hunger
-    }
-  }
-`;
+import { CharacterSelector } from '../characterSelector/characterSelector';
+import { Character } from '../../types';
 
 
 const StyledHome = styled.div`
@@ -55,32 +23,28 @@ export interface stats {
   happiness: number;
   health: number;
   hunger: number;
-}
+};
 
 export const Home: React.FC = () => {
   // TODO: proper types, maybe shared with backend
-  const [result] = useQuery<{ characters: { 
-    id: number,
-    name: string,
-    age: number,
-    description: string,
-    energy: number,
-    happiness: number,
-    health: number
-    hunger: number
-  }[] }>({ query: GET_ALL });
+  const [character, setCharacter] = useState<Character|undefined>(undefined)
 
-  const character = result.data?.characters[0];
+  const handleSetCharacter = (newCharacter: Character) => {
+    setCharacter(newCharacter)
+  }
+  console.log(character)
 
-  if (result.fetching) {
-    return <>TODO: handle loading</>;
-  }
-  if (!result.data) {
-    return <>TODO: handle no data</>;
-  }
+  if (!character) {
+    return (
+    <StyledHome>
+      <CharacterSelector 
+        handleSetCharacter = { handleSetCharacter }/>
+      <Frame />
+    </StyledHome>)}
+    
   return (
     <StyledHome>
-        <Game character={character}/>
+        <Game character={ character }/>
       <Frame />
     </StyledHome>
   );

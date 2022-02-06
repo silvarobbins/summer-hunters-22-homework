@@ -1,27 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { gql, useMutation, useQuery } from 'urql';
-import styled from 'styled-components';
+import { gql, useMutation } from 'urql';
 
-import { Porcu, BabyPorcu, Frame, Burger } from '../../assets';
+import { Porcu, BabyPorcu, Burger } from '../../assets';
 import { Character } from '../../components/Character';
 import { Screen } from '../../components/Screen';
 import { Menu } from '../menu';
 import { Stats } from '../stats';
-
-const GET_ALL = gql`
-  query GetCharacters {
-    characters {
-      id
-      name
-      age
-      description
-      energy
-      happiness
-      health
-      hunger
-    }
-  }
-`;
 
 const UPDATE_STATS = gql`
   mutation UpdateStats ($id: Int!, $energy: Int!, $happiness: Int!, $health: Int!, $hunger: Int!) {
