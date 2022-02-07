@@ -3,7 +3,7 @@ import { Database } from 'sqlite3';
 export const createTables = (db: Database) => {
   const sql = `
     CREATE TABLE IF NOT EXISTS character (
-      id INTEGER PRIMARY KEY,
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT,
       description TEXT,
       age INTEGER DEFAULT 0,
@@ -24,24 +24,25 @@ export const createTables = (db: Database) => {
 };
 
 export const seedDatabase = (db: Database) => {
-  const porcu = {
-    id: 1,
+  var characters = [
+  {
     name: 'Porcu',
-    age: 2,
+    age: 3,
     description: 'Wild beast',
-  };
+  }]
 
-  return new Promise((resolve, reject) =>
-    db.run(
-      `INSERT INTO character (id, name, age, description) VALUES (?, ?, ?, ?)`,
-      Object.values(porcu),
-      (result: unknown, err: any) => {
-        if (err) {
-          reject(err);
-        }
-        console.log('inserted characters', result);
-        resolve(result);
-      },
-    ),
-  );
+  return new Promise((resolve, reject) => {
+    for (let i = 0 ; i < characters.length ; i++) {
+      console.log(characters[i])
+      db.run(
+        `INSERT INTO character (name, age, description) VALUES (?, ?, ?)`,
+        Object.values(characters[i]),
+        (result: unknown, err: any) => {
+          if (err) {
+            reject(err);
+          }
+          resolve(result);
+        });
+    };
+  });
 };

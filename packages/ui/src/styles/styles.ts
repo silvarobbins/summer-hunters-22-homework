@@ -49,21 +49,24 @@ export const GlobalStyles = createGlobalStyle`
     cursor: pointer;
   }
 
-  @keyframes characterMove {
-    0% {
-      transform: translateX(70px);
-    }
-    100% {
-      transform: translateX(-70px);
-    }
-  }
-
   @keyframes characterBounce {
     0% {
       transform: translateY(0px);
     }
     100% {
       transform: translateY(-40px)
+    }
+  }
+
+  classname:active {
+    @keyframes eatAnimation {
+    0% {
+      transform: translate(85px, 30px);
+    }
+    100% {
+      transform: translate(0px, 0px);
+      transform: scale(0.6);
+    }
     }
   }
 `;

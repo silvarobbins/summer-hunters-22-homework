@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const StyledScreen = styled.div`
   position: absolute;
-  height: 210px;
+  height: 215px;
   width: 202px;
   top: 65px;
   left: 0;

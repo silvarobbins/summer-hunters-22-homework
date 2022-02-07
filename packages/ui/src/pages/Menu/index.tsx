@@ -11,7 +11,7 @@ const StyledMenu = styled.div`
 `;
 
 export interface IMenuProps {
-  handleSaveStats: () => void;
+  handleBack: () => void;
   toggleStatsVisibility: () => void;
   handleEat: () => void;
   handlePlay: () => void;
@@ -19,7 +19,7 @@ export interface IMenuProps {
 }
 
 export const Menu: React.FC<IMenuProps> = ({
-  handleSaveStats,
+  handleBack,
   toggleStatsVisibility,
   handleEat,
   handlePlay,
@@ -27,7 +27,7 @@ export const Menu: React.FC<IMenuProps> = ({
 }) => {
   return (
     <StyledMenu>
-      <button id='backButton' onClick={handleSaveStats}><LeftArrow /></button>
+      <button id='backButton' onClick={handleBack}><LeftArrow /></button>
       <button id='statsButton' onClick={toggleStatsVisibility}><Heart /></button>
       <button id='eatButton' onClick={handleEat}><Cutlery /></button>
       <button id='playButton' onClick={handlePlay}><Ball /></button>

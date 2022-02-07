@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { Frame } from '../../assets';
-import { Game } from '../game/game';
-import { CharacterSelector } from '../characterSelector/characterSelector';
+import { Game } from '../game';
+import { CharacterSelector } from '../characterSelector';
 import { Character } from '../../types';
 
 
@@ -32,7 +32,7 @@ export const Home: React.FC = () => {
   const handleSetCharacter = (newCharacter: Character) => {
     setCharacter(newCharacter)
   }
-  console.log(character)
+  console.log('active character:', character)
 
   if (!character) {
     return (
@@ -44,7 +44,7 @@ export const Home: React.FC = () => {
     
   return (
     <StyledHome>
-        <Game character={ character }/>
+        <Game handleSetCharacter = { handleSetCharacter } character={ character }/>
       <Frame />
     </StyledHome>
   );

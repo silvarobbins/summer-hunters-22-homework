@@ -2,6 +2,7 @@ import React, { FC, useEffect } from 'react';
 import styled from 'styled-components';
 
 const StyledCharacter = styled.div`
+  position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,7 +28,7 @@ export interface ICharacterProps {
   characterImage: React.ReactNode;
 };
 
-export const Character: FC<ICharacterProps> = ({
+export const CharacterComponent: FC<ICharacterProps> = ({
   name,
   characterImage,
   ...restProps

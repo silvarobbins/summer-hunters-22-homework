@@ -1,4 +1,4 @@
-import React ,{useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { stats } from '../home'
 
@@ -7,11 +7,12 @@ const StyledStats = styled.div`
   width: 150px;
   height: 110px;
   display: flex;
-  border: 3px solid #000000;
+  border: 3px solid #3c4141;
   border-radius: 5px;
   justify-content: center;
   align-items: center;
   background-color: #cbd9db;
+  font-color: #3c4141;
 `;
 
 export interface IStatsProps {

@@ -8,7 +8,8 @@ import cutlery from './cutlery.svg';
 import heart from './heart.svg';
 import ball from './ball.svg';
 import sleep from './sleep.svg';
-import leftArrow from './left-arrow.svg'
+import leftArrow from './left-arrow.svg';
+import x from './x.svg';
 
 export const Frame = styled.img.attrs({ src: frame })``;
 export const BabyPorcu = styled.img.attrs({ src: baby_porcu })``;
@@ -26,3 +27,5 @@ export const Sleep = styled.img.attrs({ src: sleep })`
   height: 30px`; 
 export const LeftArrow = styled.img.attrs({ src: leftArrow })`
   height: 30px`; 
+export const X = styled.img.attrs({ src: x })`
+height: 20px`; 
