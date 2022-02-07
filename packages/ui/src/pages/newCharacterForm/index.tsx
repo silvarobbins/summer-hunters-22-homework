@@ -86,7 +86,7 @@ export const NewCharacterForm: React.FC<IFormProps> = ({
               />
           <StyledButton type='submit'>Add Character</StyledButton>
       </StyledForm>
-    )    
+    ); 
   } else
   return null
 };

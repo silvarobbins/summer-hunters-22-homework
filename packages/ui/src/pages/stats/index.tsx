@@ -18,7 +18,7 @@ const StyledStats = styled.div`
 export interface IStatsProps {
   visible: boolean;
   stats: Stats;
-}
+};
 
 export const StatsDisp: React.FC<IStatsProps> = ({ 
   visible, 
@@ -33,7 +33,7 @@ export const StatsDisp: React.FC<IStatsProps> = ({
         Health: {stats.health} <br/>
         Hunger: {stats.hunger}
       </StyledStats>
-    )    
+    ); 
   } else
   return null
-}
+};

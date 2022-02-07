@@ -16,7 +16,7 @@ export interface IMenuProps {
   handleEat: () => void;
   handlePlay: () => void;
   handleSleep: () => void;
-}
+};
 
 export const Menu: React.FC<IMenuProps> = ({
   handleBack,

@@ -17,7 +17,7 @@ const StyledScreen = styled.div`
   flex-direction: column
 `;
 
-export interface IScreenProps {}
+export interface IScreenProps {};
 
 export const Screen: FC<IScreenProps> = ({ ...restProps }) => {
   return <StyledScreen {...restProps}></StyledScreen>;

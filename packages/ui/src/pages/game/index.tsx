@@ -196,5 +196,4 @@ export const Game: React.FC<IMenuProps> = ({
       <SleepComponent/> : null}
       </Screen>
   );
-
 };

@@ -19,7 +19,6 @@ const StyledCharacter = styled.div`
 
 const Name = styled.div`
 `;
-let counter = 0;
 
 export interface ICharacterProps {
   name: string;

@@ -22,10 +22,10 @@ const StyledHome = styled.div`
 
 export const Home: React.FC = () => {
   // TODO: proper types, maybe shared with backend
-  const [character, setCharacter] = useState<Character|undefined>(undefined)
+  const [character, setCharacter] = useState<Character|undefined>(undefined);
 
   const handleSetCharacter = (newCharacter: Character) => {
-    setCharacter(newCharacter)
+    setCharacter(newCharacter);
   }
   console.log('active character:', character)
 
@@ -36,7 +36,8 @@ export const Home: React.FC = () => {
       <CharacterSelector 
         handleSetCharacter = { handleSetCharacter }/>
       <Frame />
-    </StyledHome>)}
+    </StyledHome>);
+  }
     
   return (
     <StyledHome>
