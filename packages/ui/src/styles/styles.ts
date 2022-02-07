@@ -35,8 +35,17 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Poppins';
   }
 
-  ul, li, ol {
+  ul {
     list-style: inside;
+    list-style-position: outside;
+    .sub {
+      margin-left: 2em;
+    }
+  }
+
+  li, ol {
+    list-style: inside;
+    list-style-position: outside;
   }
 
   a {

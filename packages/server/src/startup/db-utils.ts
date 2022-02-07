@@ -29,9 +29,9 @@ export const seedDatabase = (db: Database) => {
     name: 'Porcu',
     age: 0,
     description: 'Wild beast',
-    energy: 40,
-    happiness: 40,
-    health: 40,
+    energy: 10,
+    happiness: 10,
+    health: 10,
     hunger: 0
   }]
 
