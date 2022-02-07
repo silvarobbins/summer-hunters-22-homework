@@ -9,11 +9,11 @@ const StyledForm = styled.form`
   height: 150px;
   display: flex;
   flex-direction: column;
-  border: 3px solid#3c4141;
+  border: 3px solid#000000;
   border-radius: 5px;
   justify-content: center;
   align-items: center;
-  background-color: #64c36c;
+  background-color: #75c17b;
 `;
 
 const StyledInput = styled.input`

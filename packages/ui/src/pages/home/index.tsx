@@ -5,6 +5,7 @@ import { Frame } from '../../assets';
 import { Game } from '../game';
 import { CharacterSelector } from '../characterSelector';
 import { Character } from '../../types';
+import { Instructions } from '../../components/Instructions';
 
 
 const StyledHome = styled.div`
@@ -18,12 +19,6 @@ const StyledHome = styled.div`
 `;
 
 
-export interface stats {
-  energy: number;
-  happiness: number;
-  health: number;
-  hunger: number;
-};
 
 export const Home: React.FC = () => {
   // TODO: proper types, maybe shared with backend
@@ -37,6 +32,7 @@ export const Home: React.FC = () => {
   if (!character) {
     return (
     <StyledHome>
+    <Instructions/>
       <CharacterSelector 
         handleSetCharacter = { handleSetCharacter }/>
       <Frame />
@@ -44,6 +40,7 @@ export const Home: React.FC = () => {
     
   return (
     <StyledHome>
+    <Instructions/>
         <Game handleSetCharacter = { handleSetCharacter } character={ character }/>
       <Frame />
     </StyledHome>

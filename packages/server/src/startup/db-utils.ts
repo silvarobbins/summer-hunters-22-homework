@@ -27,15 +27,19 @@ export const seedDatabase = (db: Database) => {
   var characters = [
   {
     name: 'Porcu',
-    age: 3,
+    age: 0,
     description: 'Wild beast',
+    energy: 40,
+    happiness: 40,
+    health: 40,
+    hunger: 0
   }]
 
   return new Promise((resolve, reject) => {
     for (let i = 0 ; i < characters.length ; i++) {
       console.log(characters[i])
       db.run(
-        `INSERT INTO character (name, age, description) VALUES (?, ?, ?)`,
+        `INSERT INTO character (name, age, description, energy, happiness, health, hunger) VALUES (?, ?, ?, ?, ?, ?, ?)`,
         Object.values(characters[i]),
         (result: unknown, err: any) => {
           if (err) {

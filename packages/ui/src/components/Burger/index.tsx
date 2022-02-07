@@ -13,9 +13,6 @@ const StyledBurger = styled.div`
   animation-direction: alternate;
   animation-iteration-count: 1;
   animation-timing-function: ease-out;
-
-  > :first-child {
-    margin-bottom: 0.5rem;
   }
 `;
 

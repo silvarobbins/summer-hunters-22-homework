@@ -8,3 +8,11 @@ export type Character = {
   health: number;
   hunger: number;
 };
+
+export type Stats = {
+  age: number;
+  energy: number;
+  happiness: number;
+  health: number;
+  hunger: number;
+};

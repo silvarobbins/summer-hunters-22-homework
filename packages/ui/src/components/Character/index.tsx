@@ -1,5 +1,7 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
+
+import { BabyPorcu, Porcu } from '../../assets';
 
 const StyledCharacter = styled.div`
   position: absolute;
@@ -12,10 +14,6 @@ const StyledCharacter = styled.div`
   animation-direction: alternate;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
-
-  > :first-child {
-    margin-bottom: 0.5rem;
-  }
 `;
 
 
@@ -25,19 +23,20 @@ let counter = 0;
 
 export interface ICharacterProps {
   name: string;
-  characterImage: React.ReactNode;
+  age: number;
 };
 
 export const CharacterComponent: FC<ICharacterProps> = ({
   name,
-  characterImage,
-  ...restProps
+  age
 }) => {
-
+  const baby = age < 5;
   return (
-    <StyledCharacter {...restProps}>
+    <StyledCharacter>
       <Name>{name}</Name>
-      {characterImage}
+      {(baby) ?
+        <BabyPorcu/>: <Porcu/> 
+      }
     </StyledCharacter>
   );
 };

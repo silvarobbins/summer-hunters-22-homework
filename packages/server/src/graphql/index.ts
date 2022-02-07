@@ -17,8 +17,8 @@ export const graphQLSchema = buildSchema(`
     characters: [Character]
   }
   type Mutation {
-    updateStats(id: Int!, energy: Int!, happiness: Int!, health: Int!, hunger: Int!): Character
-    addCharacter(name: String!, description: String!): Character
+    updateStats(id: Int!, age: Int!, energy: Int!, happiness: Int!, health: Int!, hunger: Int!): [Character]
+    addCharacter(name: String!, description: String!): [Character]
   }
 `);
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { stats } from '../home'
+import { Stats } from '../../types';
 
 const StyledStats = styled.div`
   position: absolute;
   width: 150px;
-  height: 110px;
+  height: 130px;
   display: flex;
   border: 3px solid #3c4141;
   border-radius: 5px;
@@ -17,13 +17,17 @@ const StyledStats = styled.div`
 
 export interface IStatsProps {
   visible: boolean;
-  stats: stats;
+  stats: Stats;
 }
 
-export const Stats: React.FC<IStatsProps> = ({ visible, stats }) => {
+export const StatsDisp: React.FC<IStatsProps> = ({ 
+  visible, 
+  stats
+}) => {
   if (visible) {
     return (
       <StyledStats>
+        Age: {stats.age} <br/>
         Energy: {stats.energy} <br/>
         Happiness:  {stats.happiness}<br/>
         Health: {stats.health} <br/>

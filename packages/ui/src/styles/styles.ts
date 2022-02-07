@@ -36,7 +36,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   ul, li, ol {
-    list-style: none;
+    list-style: inside;
   }
 
   a {
@@ -58,8 +58,7 @@ export const GlobalStyles = createGlobalStyle`
     }
   }
 
-  classname:active {
-    @keyframes eatAnimation {
+  @keyframes eatAnimation {
     0% {
       transform: translate(85px, 30px);
     }
@@ -67,6 +66,25 @@ export const GlobalStyles = createGlobalStyle`
       transform: translate(0px, 0px);
       transform: scale(0.6);
     }
+  }
+
+  @keyframes playAnimation {
+    0% {
+      transform: translate(85px, 50px);
+    }
+    100% {
+      transform: translate(-87px, 50px);
+    }
+  }
+
+  @keyframes sleepAnimation {
+    0% {
+      transform: translate(0px, 0px);
+      transform: scale(0.9);
+    }
+    100% {
+      transform: translate(-10px, 10px);
     }
   }
 `;
+
